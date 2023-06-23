@@ -57,9 +57,7 @@ int csv_dq_read(char instr[], char outstr[], int quote_ch, int choffset) {
 #define ADDR_SIZE	100
 #define ADDR_ALL_SIZE	255
 
-#define ZIPTABLE_MAX	100
-
-#define NITER 10000
+#define ZIPTABLE_MAX	10000
 
 typedef struct _ziptable {
 	int zip;
@@ -103,12 +101,8 @@ int my_compare(const void *zip1, const void *zip2){
 
 int main(void) {
 	ziptable_t ziptable[ZIPTABLE_MAX];
-	ziptable_t zip_copy[ZIPTABLE_MAX];
 
 	FILE *infp;
-	clock_t start, end;
-	int itr = 0;
-	int cnt = 0;
 	int	n = 0;
 
 	int getzip = 0;
@@ -117,7 +111,7 @@ int main(void) {
 	printf("Input zip(xxxxxxx) : ");
 	scanf("%d", &getzip);
 
-	if ( ( infp = fopen("chiyoda.txt", "r")) == NULL) {
+	if ( ( infp = fopen("test_dat.txt", "r")) == NULL) {
 		fprintf(stderr, "File not found\n");
 		exit(EXIT_FAILURE);
 	}
@@ -127,12 +121,12 @@ int main(void) {
 	n = read_from_csv(ziptable,infp);
 	printf("number of data = %d\n", n);
 	fclose(infp);
-	
+
 	qsort(ziptable, n, sizeof ziptable[0], my_compare);
 
 	for(int i=0;i<n;i++){
 		if(getzip==ziptable[i].zip){
-			printf("\n&d : %s, %s, %s\n", ziptable[i].pref, ziptable[i].city, ziptable[i].addr);
+			printf("\n%d : %s, %s, %s\n", ziptable[i].zip, ziptable[i].pref, ziptable[i].city, ziptable[i].addr);
 			flag = 1;
 			break;
 		}
