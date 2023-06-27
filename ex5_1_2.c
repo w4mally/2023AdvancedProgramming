@@ -10,8 +10,16 @@ typedef struct{
 
 int main(void){
     test_t a[3];
-    printf("(Array address) a[0]:%p, a[1]:%p, a[2]:%p\n", &a[0], &a[1], &a[2]);
-    printf("(a[0] member address) str1:%p, num1:%p, str2:%p, num2:%p, str3:%p\n", &a[0].str1, &a[0].num1, &a[0].str2, &a[0].num2, &a[0].str3);
-
+    printf("(Array address)\n");
+    for(int i=0;i<3;i++){
+    	printf("a[%d]:%p\n", i, &a[i]);
+    }
+    printf("(a[0] member address)\n");
+    printf("\n");
+    printf("str1: %p\n", &a[0].str1);
+    printf("num1: %p\n", &a[0].num1);
+    printf("str2: %p\n", &a[0].str2);
+    printf("num2: %p\n", &a[0].num2);
+    printf("str3: %p\n", &a[0].str3);
     return 0;
 }
