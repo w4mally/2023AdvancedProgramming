@@ -6,7 +6,7 @@ void vec_sub(int n, float *in1, float *in2, float *out);
 int mat_inv(int n, float in[n][n], float out[n][n]);
 void print_matrix(int n, float mat[n][n]);
 
-int main(){
+int main(void){
     int n = 0;
     int check = 2;
 
