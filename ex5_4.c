@@ -29,9 +29,13 @@ int main(){
 
     fclose(fp);
 
+    printf("(input matrix)\n");
+    print_matrix(n, in);
+
     check = mat_inv(n, in, out);
 
     if(check==0){
+        printf("(inverse matrix)\n");
         print_matrix(n, out);
     }
     else if(check==-1){
