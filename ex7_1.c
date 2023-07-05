@@ -16,7 +16,8 @@ int main(void){
 
     for(int i=0;i<3;i++){
         printf("Input : ");
-        scanf("%s", name);
+        fgets(name, sizeof(name), stdin);
+        name[strlen(name)-1] = '\0';
         flag = add_node(&head, name);
         if(flag!=0){
             printf("Error!");
