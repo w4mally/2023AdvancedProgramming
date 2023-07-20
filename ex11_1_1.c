@@ -35,7 +35,7 @@ int main(void){
     fread(&check_offset, sizeof(int), 1, fp);
 
     if(strcmp(check_BM, "BM") == 0 && check_pixel == 24 && check_offset == 54){
-        printf("OK.");
+        printf("OK.\n");
     } else {
         if(strcmp(check_BM, "BM") != 0) cnt++;
         if(check_pixel != 24) cnt++;
