@@ -10,6 +10,7 @@ int main(int argc, char *argv[]){
     unsigned long long tmp_ull = 0;
     char rev_ans[10000];
     char ans_char[10000];
+    int flag = 2; 
 
     /*1つ目の引数のhugeintへの変換*/
     for(int i=0;i<strlen(argv[1]);i++){
@@ -32,6 +33,14 @@ int main(int argc, char *argv[]){
     }
     
     huge_int *ans = huge_add(x, y); /*和の計算*/
+
+    if (x->size == 0 && y->size == 0) {
+        flag = 1;
+    }
+    else {
+        flag = 0;
+    }
+
     free(x);
     free(y);
 
@@ -57,7 +66,8 @@ int main(int argc, char *argv[]){
 
     ans_char[cnt] = '\0';
 
-    printf("%s\n", ans_char);
+    if (flag == 1) printf("0\n");
+    else printf("%s\n", ans_char);
 
     free(ten);
     free(ans);
