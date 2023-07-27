@@ -9,10 +9,12 @@ int main(int argc, char*argv[]){
     int maxbit = 0;
     unsigned long long ans = 1;
     unsigned long long ull_x = x;
+    unsigned int a = 1;
 
     /*bit_yにyの2進表現を配列で格納する*/
     while(1){
-        int a = 1 << i;
+        a = 1;
+        a = a << i;
         if((y&a) == 0) tmp[31-i] = 0;
         else tmp[31-i] = 1;
 
@@ -42,7 +44,7 @@ int main(int argc, char*argv[]){
             else if(bit_y[j] == 1){
                 ans = ans*ans;
                 ans = ans*ull_x;
-            } 
+            }
         }
     }
 
