@@ -10,10 +10,11 @@ int main(int argc, char *argv[]){
     unsigned long long tmp_ull = 0;
     char rev_ans[10000];
     char ans_char[10000];
-    int flag = 2; 
+    int flag = 2;
 
     /*1つ目の引数のhugeintへの変換*/
-    for(int i=0;i<strlen(argv[1]);i++){
+    int len1 = (int)strlen(argv[1]);
+    for(int i=0;i<len1;i++){
         huge_int *tmp = from_uchar((unsigned char)(argv[1][i] - '0')); /*今回の桁の一時保存先*/
         huge_int *mul10 = huge_multiply(x, ten); /*ここまでの結果を10倍*/
         free(x);
@@ -23,7 +24,8 @@ int main(int argc, char *argv[]){
     }
 
     /*2つ目の引数のhugeintへの変換*/
-    for(int i=0;i<strlen(argv[2]);i++){
+    int len2 = (int)strlen(argv[2]);
+    for(int i=0;i<len2;i++){
         huge_int *tmp = from_uchar((unsigned char)(argv[2][i] - '0')); /*今回の桁の一時保存先*/
         huge_int *mul10 = huge_multiply(y, ten); /*ここまでの結果を10倍*/
         free(y);
@@ -31,7 +33,7 @@ int main(int argc, char *argv[]){
         free(tmp);
         free(mul10);
     }
-    
+
     huge_int *ans = huge_add(x, y); /*和の計算*/
 
     if (x->size == 0 && y->size == 0) {
