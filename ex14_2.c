@@ -1,9 +1,10 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "hugeint.h"
 
-void print_huge_int(huge_int *in);
+void print_huge_int(huge_int *in); /*hugeintで表されている整数を文字列に変換して表示する関数*/
 
 int main(int argc, char *argv[]){
     huge_int *x = from_uchar(0);
@@ -26,7 +27,8 @@ int main(int argc, char *argv[]){
     fp = fopen(argv[2], "wb");
 
     fwrite(x->num, sizeof(unsigned char), x->size, fp);
-
+    
+    free(x);
     fclose(fp);
 
     return 0;
@@ -38,14 +40,18 @@ void print_huge_int(huge_int *in){
     int cnt = 0;
     unsigned long long tmp_ull = 0;
     huge_int *ten = from_uchar(10);
+    huge_pair tmp_div;
     while(1){
-        if(is_zero(in)) break;
-        huge_pair tmp_div = huge_divide(in, ten);
+        free(tmp_div.r);
+        if(is_zero(in)){
+            free(in);
+            break;
+        }
+        tmp_div = huge_divide(in, ten);
         tmp_ull = to_ulonglong(tmp_div.r);
         rev_ans[cnt] = "0123456789"[tmp_ull%10];
         free(in);
         in = tmp_div.q;
-        free(tmp_div.r);
         cnt++;
     }
 
