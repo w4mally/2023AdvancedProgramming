@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
     }
 
     /*ファイル内容の非負整数化*/
-    huge_int *result = (huge_int *)malloc(sizeof(huge_int) + filesize);
+    huge_int *result = malloc(sizeof(huge_int) + filesize);
     result->size = filesize;
 
     fseek(fp, 0, SEEK_SET);
@@ -41,14 +41,18 @@ void print_huge_int(huge_int *in){
     int cnt = 0;
     unsigned long long tmp_ull = 0;
     huge_int *ten = from_uchar(10);
+    huge_pair tmp_div;
     while(1){
-        if(is_zero(in)) break;
-        huge_pair tmp_div = huge_divide(in, ten);
+        free(tmp_div.r);
+        if(is_zero(in)){
+            free(in);
+            break;
+        }
+        tmp_div = huge_divide(in, ten);
         tmp_ull = to_ulonglong(tmp_div.r);
         rev_ans[cnt] = "0123456789"[tmp_ull%10];
         free(in);
         in = tmp_div.q;
-        free(tmp_div.r);
         cnt++;
     }
 
