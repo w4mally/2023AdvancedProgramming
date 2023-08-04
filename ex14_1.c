@@ -43,7 +43,6 @@ void print_huge_int(huge_int *in){
     huge_int *ten = from_uchar(10);
     huge_pair tmp_div;
     while(1){
-        free(tmp_div.r);
         if(is_zero(in)){
             free(in);
             break;
@@ -54,6 +53,7 @@ void print_huge_int(huge_int *in){
         free(in);
         in = tmp_div.q;
         cnt++;
+        free(tmp_div.r);
     }
 
     rev_ans[cnt] = '\0';
