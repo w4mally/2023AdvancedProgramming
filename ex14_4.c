@@ -5,7 +5,7 @@
 
 huge_int *str_to_hugeint(char *str); /*文字列からhugeintに変換を行う*/
 void print_huge_int(huge_int *in); /*hugeintで表されている整数を文字列に変換して表示する関数*/
-huge_int *RSA_encode(huge_int *m, huge_int *n, huge_int *e); /*RSA暗号化*/
+huge_int *RSA_encode(huge_int *m, huge_int *n, huge_int *e);
 
 int main(int argc, char *argv[]){
     huge_int *m = str_to_hugeint(argv[1]);
